@@ -1,0 +1,5 @@
+interface:
+  display_name: "Time Value Decision"
+  short_description: "ค้น Fact คำนวณทางเลือก และ Grill การตัดสินใจ"
+  brand_color: "#28C9EB"
+  default_prompt: "Use $time-value-decision to verify the facts, compare my options, and grill me on whether I genuinely want this."
