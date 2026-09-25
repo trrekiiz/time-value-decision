@@ -1,6 +1,8 @@
 # Time Value Decision
 
-Codex Skill สำหรับการตัดสินใจที่ต้องแลกเงินกับเวลา ความสะดวก พลังงาน หรือความแน่นอน
+Cross-platform Agent Skill for Codex, Claude Code, and Gemini CLI. It fact-checks options, calculates money-versus-time trade-offs, and challenges whether paying more is actually worth it.
+
+Agent Skill สำหรับ Codex, Claude Code และ Gemini CLI เพื่อช่วยตัดสินใจเมื่อต้องแลกเงินกับเวลา ความสะดวก พลังงาน หรือความแน่นอน
 
 เหมาะกับการเปรียบเทียบเที่ยวบิน โรงแรม การเดินทาง ค่าส่ง Subscription การจ้างคนทำงานแทน และการอัปเกรดต่าง ๆ
 
@@ -12,9 +14,21 @@ Skill นี้ไม่กำหนดว่าเวลาของทุก�
 - **Fact Check** ค้นและตรวจสอบข้อมูลปัจจุบันก่อนนำมาคำนวณ
 - **Grill Me** ถามกลับเพื่อทดสอบว่าเราต้องการสิ่งนั้นจริง หรือกำลังหาเหตุผลรองรับความอยาก
 
-## ติดตั้งใน Codex
+## รองรับ
 
-### วิธีที่ 1: Clone ด้วย Git
+| Agent | รูปแบบ Skill | เรียกใช้ |
+| --- | --- | --- |
+| Codex | `SKILL.md` | `$time-value-decision` หรือพิมพ์คำขอที่ตรงกับ Skill |
+| Claude Code | `SKILL.md` | `/time-value-decision` หรือพิมพ์คำขอที่ตรงกับ Skill |
+| Gemini CLI | `SKILL.md` | พิมพ์คำขอที่ตรงกับ Skill แล้วอนุมัติการ Activate |
+
+Skill หลักใช้ไฟล์ชุดเดียวกันทั้งสามแพลตฟอร์ม ส่วน `agents/openai.yaml` เป็น metadata เพิ่มเติมสำหรับ Codex และไม่กระทบ Claude Code หรือ Gemini CLI
+
+## ติดตั้ง
+
+### Codex
+
+ติดตั้งแบบ Personal Skill:
 
 ```bash
 git clone https://github.com/trrekiiz/time-value-decision.git ~/.codex/skills/time-value-decision
@@ -22,23 +36,46 @@ git clone https://github.com/trrekiiz/time-value-decision.git ~/.codex/skills/ti
 
 จากนั้นเปิด Codex ใหม่
 
-### วิธีที่ 2: ดาวน์โหลด ZIP
+### Claude Code
+
+ติดตั้งแบบ Personal Skill:
+
+```bash
+git clone https://github.com/trrekiiz/time-value-decision.git ~/.claude/skills/time-value-decision
+```
+
+จากนั้นเปิด Claude Code ใหม่ หรือเริ่ม session ใหม่
+
+### Gemini CLI
+
+ติดตั้งจาก GitHub โดยตรง:
+
+```bash
+gemini skills install https://github.com/trrekiiz/time-value-decision
+```
+
+ตรวจสอบด้วย `gemini skills list` และใช้ `/skills reload` หาก session เดิมยังไม่เห็น Skill
+
+### ดาวน์โหลด ZIP
 
 1. ดาวน์โหลด repository เป็น ZIP
 2. แตกโฟลเดอร์และเปลี่ยนชื่อเป็น `time-value-decision`
-3. วางไว้ที่ `~/.codex/skills/time-value-decision`
-4. เปิด Codex ใหม่
+3. วางไว้ในโฟลเดอร์ Skill ของ Agent ที่ใช้
+   - Codex: `~/.codex/skills/time-value-decision`
+   - Claude Code: `~/.claude/skills/time-value-decision`
+   - Gemini CLI: `~/.gemini/skills/time-value-decision`
+4. เปิด Agent ใหม่หรือ reload รายการ Skills
 
 ## ตัวอย่างการใช้งาน
 
 ```text
-ใช้ $time-value-decision เปรียบเทียบเที่ยวบินสองตัวเลือกนี้
+ใช้ time-value-decision เปรียบเทียบเที่ยวบินสองตัวเลือกนี้
 ตรวจสอบเวลาเดินทางจริง คำนวณ break-even และ Grill me
 ว่าฉันต้องการจ่ายเพิ่มเพื่อบินตรงจริงหรือเปล่า
 ```
 
 ```text
-ใช้ $time-value-decision เปรียบเทียบโรงแรม A กับ B
+ใช้ time-value-decision เปรียบเทียบโรงแรม A กับ B
 แสดงเวลาที่ใช้เพิ่มทั้งหมด จุดคุ้มทุน และ sensitivity
 ที่ 200, 400, 600 และ 1,000 บาทต่อชั่วโมง
 ```
