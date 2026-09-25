@@ -17,7 +17,7 @@ Skill นี้ไม่กำหนดว่าเวลาของทุก�
 ### วิธีที่ 1: Clone ด้วย Git
 
 ```bash
-git clone <GITHUB_REPO_URL> ~/.codex/skills/time-value-decision
+git clone https://github.com/trrekiiz/time-value-decision.git ~/.codex/skills/time-value-decision
 ```
 
 จากนั้นเปิด Codex ใหม่
